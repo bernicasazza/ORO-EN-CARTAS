@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Acceso Exclusivo | Paz Interior</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ecb613",
+                        "background-light": "#fcf5f1",
+                        "background-dark": "#221d10",
+                    },
+                    fontFamily: {
+                        "display": ["Noto Serif", "serif"],
+                        "sans": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        .speckle-bg {
+            background-color: #fcf5f1;
+            background-image: radial-gradient(#ffffff 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light font-display text-[#1b180d] transition-colors duration-300">
+    <div class="relative min-h-screen w-full flex flex-col speckle-bg overflow-x-hidden">
+        <header class="flex items-center justify-center p-8">
+            <div class="flex items-center gap-3">
+                <img src="logo%20dorado.png" alt="Logo Dorado" class="h-10 w-auto object-contain">
+                <h2 class="text-[#1b180d] text-2xl font-bold leading-tight tracking-[-0.015em]">MiClub</h2>
+            </div>
+        </header>
+        <main class="flex-1 flex items-center justify-center p-6">
+            <div class="relative w-full max-w-[480px]">
+                <div class="absolute -top-8 -left-8 text-primary/30 select-none">
+                    <span class="material-symbols-outlined text-5xl">colors_spark</span>
+                </div>
+                <div class="absolute -bottom-8 -right-8 text-primary/30 select-none">
+                    <span class="material-symbols-outlined text-5xl">auto_awesome</span>
+                </div>
+                <!-- Top Right Images -->
+                <!-- Top Right Images (Non-clickable design element) -->
+                <div class="absolute top-8 right-8 flex gap-4 z-20 hover:scale-105 transition-transform duration-300">
+                    <img src="cartas/carta 49 - cecilia .png" alt="Carta Cecilia"
+                        class="w-16 h-auto drop-shadow-md rounded-md transform rotate-[-5deg]">
+                    <img src="cartas/carta 49 - marina.png" alt="Carta Marina"
+                        class="w-16 h-auto drop-shadow-md rounded-md transform rotate-[5deg] -ml-6">
+                </div>
+
+                <div
+                    class="glass-card shadow-xl rounded-2xl border border-white/60 p-10 md:p-14 flex flex-col items-center">
+                    <div class="flex flex-col items-center mb-10 gap-4">
+                        <div class="size-16 flex items-center justify-center mb-2">
+                            <img src="mariposa%20dorada.png" alt="Mariposa Dorada" class="w-full h-full object-contain">
+                        </div>
+                        <div class="text-center">
+                            <h1 class="text-3xl font-bold text-[#1b180d] leading-tight">Bienvenida</h1>
+                            <p class="text-[#9a864c] text-base mt-2">Accede a tu espacio de calma y reflexión</p>
+                        </div>
+                    </div>
+
+                    <form id="loginForm" class="w-full flex flex-col gap-6"
+                        onsubmit="event.preventDefault(); validateLogin();">
+                        <div class="flex flex-col gap-2">
+                            <label class="text-[#1b180d] text-sm font-medium flex items-center gap-2 px-1">
+                                <span class="material-symbols-outlined text-lg opacity-60">person</span>
+                                Usuario
+                            </label>
+                            <input id="username"
+                                class="w-full bg-white/50 border border-[#e7e1cf] rounded-xl h-14 px-4 text-[#1b180d] focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-[#9a864c]/40"
+                                placeholder="Ingresa tu usuario" required type="text" />
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label class="text-[#1b180d] text-sm font-medium flex items-center gap-2 px-1">
+                                <span class="material-symbols-outlined text-lg opacity-60">lock</span>
+                                Contraseña
+                            </label>
+                            <input id="password"
+                                class="w-full bg-white/50 border border-[#e7e1cf] rounded-xl h-14 px-4 text-[#1b180d] focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-[#9a864c]/40"
+                                placeholder="••••••••" required type="password" />
+                        </div>
+
+                        <div id="error-msg" class="text-red-500 text-sm text-center hidden">
+                            Usuario o contraseña incorrectos
+                        </div>
+
+                        <div class="pt-2 w-full">
+                            <button type="submit"
+                                class="w-full h-14 bg-primary text-[#1b180d] font-bold text-base tracking-[0.2em] rounded-xl hover:shadow-lg hover:brightness-105 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+                                INICIAR SESIÓN
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="absolute top-6 left-6 text-primary opacity-20 select-none">
+                        <span class="material-symbols-outlined text-sm">stars</span>
+                    </div>
+                    <div class="absolute bottom-6 right-6 text-primary opacity-20 select-none">
+                        <span class="material-symbols-outlined text-sm">brightness_low</span>
+                    </div>
+                </div>
+            </div>
+            <script>
+                function validateLogin() {
+                    const user = document.getElementById('username').value;
+                    const pass = document.getElementById('password').value;
+                    const errorMsg = document.getElementById('error-msg');
+
+                    if (user === 'MiClub' && pass === 'Socia2026') {
+                        errorMsg.classList.add('hidden');
+                        window.location.href = 'code.html';
+                    } else {
+                        errorMsg.classList.remove('hidden');
+                    }
+                }
+            </script>
+        </main>
+        <footer class="p-8 text-center">
+            <p class="text-[#9a864c] text-xs font-sans tracking-widest uppercase opacity-60">
+                © 2024 Paz Interior — Acceso Exclusivo
+            </p>
+        </footer>
+        <div class="hidden">
+            <img data-alt="Abstract soft peach gradient background with white speckle noise pattern"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAya9L4KYkSR-1YeBVwJBoLV1nemEpmsjbQiDBTAJiTUtGuvaYkCtH18HiMhIrUoi4d4F0--MWf-lsns1xqtTFy0OKfVwcc0MCbeVWtPzCA9AScftSC_pOvVDdnottOyEMlGoGdzQHjOnzOBBemRsL_tiquD6RtPDVX1FKV48sjgyRAE8ai0cPKAGYYomuIrJaP94b1rnKpFt1cqU9LlALU1TWd5cJTb2sUDB1bqH_tzhBvL6O_70QKsl7FoIRMTPGiBwq7YLCE18A" />
+        </div>
+    </div>
+
+</body>
+
+</html>
