@@ -80,7 +80,7 @@
     </header>
     <main class="max-w-7xl mx-auto px-4 pb-20">
         <div class="text-center mb-16">
-            <h1 class="font-display text-5xl md:text-7xl text-gold-text mb-4">Sobre las Creadoras</h1>
+            <h1 class="font-display text-4xl md:text-7xl text-gold-text mb-4">Sobre las Creadoras</h1>
             <p class="font-body italic text-primary dark:text-gray-400 text-xl">Inspiración, arte y bienestar</p>
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 px-4 md:px-12">
@@ -159,7 +159,7 @@
         const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
         const themeToggleBtn = document.getElementById('theme-toggle');
         // Check initial theme
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        if (localStorage.getItem('color-theme') === 'dark') {
             document.documentElement.classList.add('dark');
             themeToggleLightIcon.classList.remove('hidden');
         } else {
