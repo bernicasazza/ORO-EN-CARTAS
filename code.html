@@ -38,7 +38,7 @@
     <style>
         .fan-container {
             perspective: 1000px;
-            height: 340px;
+            height: 420px;
             display: flex;
             justify-content: center;
             align-items: flex-end;
@@ -59,12 +59,12 @@
         }
 
         .card-1 {
-            transform: rotate(-20deg) translateX(-120px);
+            transform: rotate(-20deg) translateX(-160px);
             z-index: 10;
         }
 
         .card-2 {
-            transform: rotate(-10deg) translateX(-60px);
+            transform: rotate(-10deg) translateX(-80px);
             z-index: 20;
         }
 
@@ -74,17 +74,28 @@
         }
 
         .card-4 {
-            transform: rotate(10deg) translateX(60px);
+            transform: rotate(10deg) translateX(80px);
             z-index: 20;
         }
 
         .card-5 {
-            transform: rotate(20deg) translateX(120px);
+            transform: rotate(20deg) translateX(160px);
             z-index: 10;
         }
 
         .gold-glow {
-            box-shadow: 0 0 15px rgba(194, 166, 97, 0.3);
+            box-shadow: 0 0 30px rgba(194, 166, 97, 0.6), 0 0 10px rgba(194, 166, 97, 0.4);
+            animation: pulse-glow 2s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            from {
+                box-shadow: 0 0 25px rgba(194, 166, 97, 0.6);
+            }
+
+            to {
+                box-shadow: 0 0 50px rgba(194, 166, 97, 1), 0 0 30px rgba(255, 223, 140, 0.8);
+            }
         }
 
         .soft-float {
@@ -142,12 +153,13 @@
             .fan-container {
                 transform: scale(0.75);
                 transform-origin: bottom center;
-                height: 260px;
+                height: 320px;
                 padding-bottom: 20px;
             }
 
             .card-item:hover {
                 transform: translateY(-10px) scale(1.05) !important;
+                filter: drop-shadow(0 0 20px rgba(194, 166, 97, 0.6));
             }
         }
     </style>
@@ -157,9 +169,9 @@
 selection:bg-primary/30 overflow-x-hidden">
     <header class="p-6 flex justify-between items-center relative z-50">
         <div class="flex-1 flex flex-col items-start gap-2">
-            <img alt="Logo" class="h-16 w-auto object-contain" src="logo%20dorado.png" />
+            <img alt="Logo" class="h-24 w-auto object-contain" src="logo%20dorado.png" />
             <a href="index.html"
-                class="text-xs font-sans font-medium text-stone-500 hover:text-primary transition-colors tracking-widest uppercase ml-2">
+                class="text-sm font-sans font-medium text-stone-500 hover:text-primary transition-colors tracking-widest uppercase ml-2">
                 Salir
             </a>
         </div>
@@ -167,58 +179,64 @@ selection:bg-primary/30 overflow-x-hidden">
             <div class="flex flex-col items-center">
                 <img alt="Mariposa Dorada" class="h-8 w-auto mb-1 object-contain" src="mariposa%20dorada.png" />
                 <p
-                    class="text-[10px] tracking-[0.2em] uppercase font-light text-stone-500 dark:text-stone-600 whitespace-nowrap">
+                    class="text-xs tracking-[0.2em] uppercase font-light text-stone-500 dark:text-stone-600 whitespace-nowrap">
                     Marina Borensztein</p>
             </div>
         </div>
         <div class="flex-1 flex justify-end">
             <a href="biblio.html" class="flex gap-4 hover:scale-105 transition-transform duration-300">
                 <img src="cartas/carta 49 - cecilia .png" alt="Carta Cecilia"
-                    class="w-16 h-auto drop-shadow-md rounded-md transform rotate-[-5deg]">
+                    class="w-24 md:w-32 h-auto drop-shadow-md rounded-md transform rotate-[-5deg]">
                 <img src="cartas/carta 49 - marina.png" alt="Carta Marina"
-                    class="w-16 h-auto drop-shadow-md rounded-md transform rotate-[5deg] -ml-6">
+                    class="w-24 md:w-32 h-auto drop-shadow-md rounded-md transform rotate-[5deg] -ml-8 md:-ml-12">
             </a>
         </div>
     </header>
     <main class="flex flex-col items-center justify-between min-h-[calc(100dvh-120px)] px-6 pb-12">
-        <div class="text-center mt-4">
-            <h1 class="text-3xl md:text-5xl font-display text-[#C2A059] mb-2">Oro en cartas</h1>
-            <p class="font-script text-xl md:text-2xl text-primary/80 dark:text-primary">Este mensaje llega para vos,
+        <div class="text-center mt-6 mb-12 md:mb-4 relative z-40">
+            <h1 class="text-5xl md:text-7xl font-display text-[#C2A059] mb-4">Oro en cartas</h1>
+            <p class="font-script text-2xl md:text-4xl text-primary/80 dark:text-primary">Este mensaje llega para vos,
                 justo ahora
             </p>
         </div>
         <div class="relative w-full flex-1 flex items-center justify-center">
-            <div class="fan-container w-full max-w-sm">
+            <div class="fan-container w-full max-w-2xl">
                 <div
-                    class="card-item card-1 w-40 h-64 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/20 overflow-hidden">
+                    class="card-item card-1 w-56 h-80 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/20 overflow-hidden">
                     <img alt="Dorso Carta 1" class="w-full h-full object-cover opacity-80"
                         src="dorsos/Carta%201%20-%20Dorso.jpg" />
                     <div class="absolute inset-0 foil-texture pointer-events-none"></div>
                     <div class="absolute inset-0 border-[0.5px] border-primary/30 rounded-2xl m-2"></div>
                 </div>
                 <div
-                    class="card-item card-2 w-40 h-64 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/20 overflow-hidden">
+                    class="card-item card-2 w-56 h-80 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/20 overflow-hidden">
                     <img alt="Dorso Carta 2" class="w-full h-full object-cover opacity-80"
                         src="dorsos/Carta%202%20-%20Dorso.jpg" />
                     <div class="absolute inset-0 foil-texture pointer-events-none"></div>
                     <div class="absolute inset-0 border-[0.5px] border-primary/30 rounded-2xl m-2"></div>
                 </div>
                 <div
-                    class="card-item card-3 w-40 h-64 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/40 overflow-hidden gold-glow">
+                    class="card-item card-3 w-56 h-80 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/40 overflow-hidden gold-glow">
                     <img alt="Dorso Carta 3" class="w-full h-full object-cover opacity-90"
                         src="dorsos/Carta%203%20-%20Dorso.jpg" />
                     <div class="absolute inset-0 foil-texture pointer-events-none"></div>
                     <div class="absolute inset-0 border-2 border-primary/20 rounded-2xl m-2"></div>
+                    <div
+                        class="absolute -top-6 -right-6 w-12 h-12 bg-white rounded-full blur-xl opacity-80 animate-pulse z-40">
+                    </div>
+                    <div
+                        class="absolute -bottom-6 -left-6 w-10 h-10 bg-[#ffd700] rounded-full blur-xl opacity-60 animate-pulse delay-75 z-40">
+                    </div>
                 </div>
                 <div
-                    class="card-item card-4 w-40 h-64 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/20 overflow-hidden">
+                    class="card-item card-4 w-56 h-80 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/20 overflow-hidden">
                     <img alt="Dorso Carta 4" class="w-full h-full object-cover opacity-80"
                         src="dorsos/Carta%204%20-%20Dorso.jpg" />
                     <div class="absolute inset-0 foil-texture pointer-events-none"></div>
                     <div class="absolute inset-0 border-[0.5px] border-primary/30 rounded-2xl m-2"></div>
                 </div>
                 <div
-                    class="card-item card-5 w-40 h-64 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/20 overflow-hidden">
+                    class="card-item card-5 w-56 h-80 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/20 overflow-hidden">
                     <img alt="Dorso Carta 5" class="w-full h-full object-cover opacity-80"
                         src="dorsos/Carta%205%20-%20Dorso.jpg" />
                     <div class="absolute inset-0 foil-texture pointer-events-none"></div>
@@ -281,15 +299,15 @@ selection:bg-primary/30 overflow-x-hidden">
     <div id="card-modal"
         class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300">
         <div
-            class="relative w-full max-w-md p-6 md:p-8 bg-[#fdf8f5] dark:bg-[#EFC9C8] rounded-3xl shadow-2xl transform scale-95 transition-transform duration-300 flex flex-col items-center border border-primary/30 mx-4">
+            class="relative w-full max-w-xl p-6 md:p-10 bg-[#fdf8f5] dark:bg-[#EFC9C8] rounded-3xl shadow-2xl transform scale-95 transition-transform duration-300 flex flex-col items-center border border-primary/30 mx-4">
             <button id="btn-close-modal"
-                class="absolute top-4 right-4 text-[#BB8080] hover:text-stone-600 transition-colors">
-                <span class="material-symbols-outlined">close</span>
+                class="absolute top-4 right-4 text-[#BB8080] hover:text-stone-600 transition-colors z-50 p-2 cursor-pointer">
+                <span class="material-symbols-outlined text-3xl font-bold">close</span>
             </button>
 
-            <h2 class="text-3xl font-display text-[#C2A059] mb-6 text-center">Tu Mensaje</h2>
+            <h2 class="text-4xl font-display text-[#C2A059] mb-8 text-center">Tu Mensaje</h2>
 
-            <div class="relative w-64 h-96 mb-8 perspective-1000 group">
+            <div class="relative w-80 h-[500px] mb-8 perspective-1000 group">
                 <div id="card-display" class="w-full h-full relative preserve-3d transition-transform duration-700">
                     <!-- Back of card (Pattern/Dorso) - Initially Visible -->
                     <div class="absolute inset-0 backface-hidden">
@@ -305,7 +323,7 @@ selection:bg-primary/30 overflow-x-hidden">
             </div>
 
             <button id="btn-reveal"
-                class="px-10 py-3 bg-[#BB8080] text-white font-display text-lg tracking-wide uppercase rounded-full hover:bg-[#a67070] transition-colors gold-glow shadow-md">
+                class="px-12 py-4 bg-[#BB8080] text-white font-display text-xl tracking-wide uppercase rounded-full hover:bg-[#a67070] transition-colors gold-glow shadow-md">
                 Ver mi carta
             </button>
 
