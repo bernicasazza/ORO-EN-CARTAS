@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Oro en Cartas - Oracle Selection</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Montserrat:wght@200;300;400&amp;family=Great+Vibes&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#c2a661", // Gold foil color
+                        "background-light": "#fdf8f5", // Light pastel peach/cream
+                        "background-dark": "#EFC9C8", // Custom pink background
+                        "accent-soft": "#e8d5cc",
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        sans: ["Montserrat", "sans-serif"],
+                        script: ["Great Vibes", "cursive"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .fan-container {
+            perspective: 1000px;
+            height: 340px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding-bottom: 40px;
+        }
+
+        .card-item {
+            position: absolute;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-origin: bottom center;
+            cursor: pointer;
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+        }
+
+        .card-item:hover {
+            transform: translateY(-20px) scale(1.05) !important;
+            z-index: 50 !important;
+        }
+
+        .card-1 {
+            transform: rotate(-20deg) translateX(-120px);
+            z-index: 10;
+        }
+
+        .card-2 {
+            transform: rotate(-10deg) translateX(-60px);
+            z-index: 20;
+        }
+
+        .card-3 {
+            transform: rotate(0deg) translateY(-10px);
+            z-index: 30;
+        }
+
+        .card-4 {
+            transform: rotate(10deg) translateX(60px);
+            z-index: 20;
+        }
+
+        .card-5 {
+            transform: rotate(20deg) translateX(120px);
+            z-index: 10;
+        }
+
+        .gold-glow {
+            box-shadow: 0 0 15px rgba(194, 166, 97, 0.3);
+        }
+
+        .soft-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .foil-texture {
+            background: linear-gradient(135deg, rgba(194, 166, 97, 0) 0%, rgba(194, 166, 97, 0.2) 50%, rgba(194, 166, 97, 0) 100%);
+            background-size: 200% 200%;
+            animation: foilMove 4s linear infinite;
+        }
+
+        @keyframes foilMove {
+            0% {
+                background-position: -200% -200%;
+            }
+
+            100% {
+                background-position: 200% 200%;
+            }
+        }
+
+        /* 3D Flip Utilities */
+        .preserve-3d {
+            transform-style: preserve-3d;
+        }
+
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-stone-800 dark:text-stone-900 min-h-screen font-sans selection:bg-primary/30 overflow-hidden">
+    <header class="p-6 flex justify-between items-center relative z-50">
+        <div class="flex-1 flex flex-col items-start gap-2">
+            <img alt="Logo" class="h-16 w-auto object-contain" src="logo%20dorado.png" />
+            <a href="index.html"
+                class="text-xs font-sans font-medium text-stone-500 hover:text-primary transition-colors tracking-widest uppercase ml-2">
+                Salir
+            </a>
+        </div>
+        <div class="text-center shrink-0">
+            <div class="flex flex-col items-center">
+                <img alt="Mariposa Dorada" class="h-8 w-auto mb-1 object-contain" src="mariposa%20dorada.png" />
+                <p class="text-[10px] tracking-[0.2em] uppercase font-light text-stone-500 dark:text-stone-600">Marina
+                    Borensztein</p>
+            </div>
+        </div>
+        <div class="flex-1 flex justify-end">
+            <a href="biblio.html" class="flex gap-4 hover:scale-105 transition-transform duration-300">
+                <img src="cartas/carta 49 - cecilia .png" alt="Carta Cecilia"
+                    class="w-16 h-auto drop-shadow-md rounded-md transform rotate-[-5deg]">
+                <img src="cartas/carta 49 - marina.png" alt="Carta Marina"
+                    class="w-16 h-auto drop-shadow-md rounded-md transform rotate-[5deg] -ml-6">
+            </a>
+        </div>
+    </header>
+    <main class="flex flex-col items-center justify-between h-[calc(100vh-120px)] px-6 pb-12">
+        <div class="text-center mt-4">
+            <h1 class="text-5xl font-display text-[#C2A059] mb-2">Oro en cartas</h1>
+            <p class="font-script text-2xl text-primary/80 dark:text-primary">Este mensaje llega para vos, justo ahora
+            </p>
+        </div>
+        <div class="relative w-full flex-1 flex items-center justify-center">
+            <div class="fan-container w-full max-w-sm">
+                <div
+                    class="card-item card-1 w-40 h-64 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/20 overflow-hidden">
+                    <img alt="Dorso Carta 1" class="w-full h-full object-cover opacity-80"
+                        src="dorsos/Carta%201%20-%20Dorso.jpg" />
+                    <div class="absolute inset-0 foil-texture pointer-events-none"></div>
+                    <div class="absolute inset-0 border-[0.5px] border-primary/30 rounded-2xl m-2"></div>
+                </div>
+                <div
+                    class="card-item card-2 w-40 h-64 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/20 overflow-hidden">
+                    <img alt="Dorso Carta 2" class="w-full h-full object-cover opacity-80"
+                        src="dorsos/Carta%202%20-%20Dorso.jpg" />
+                    <div class="absolute inset-0 foil-texture pointer-events-none"></div>
+                    <div class="absolute inset-0 border-[0.5px] border-primary/30 rounded-2xl m-2"></div>
+                </div>
+                <div
+                    class="card-item card-3 w-40 h-64 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/40 overflow-hidden gold-glow">
+                    <img alt="Dorso Carta 3" class="w-full h-full object-cover opacity-90"
+                        src="dorsos/Carta%203%20-%20Dorso.jpg" />
+                    <div class="absolute inset-0 foil-texture pointer-events-none"></div>
+                    <div class="absolute inset-0 border-2 border-primary/20 rounded-2xl m-2"></div>
+                </div>
+                <div
+                    class="card-item card-4 w-40 h-64 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/20 overflow-hidden">
+                    <img alt="Dorso Carta 4" class="w-full h-full object-cover opacity-80"
+                        src="dorsos/Carta%204%20-%20Dorso.jpg" />
+                    <div class="absolute inset-0 foil-texture pointer-events-none"></div>
+                    <div class="absolute inset-0 border-[0.5px] border-primary/30 rounded-2xl m-2"></div>
+                </div>
+                <div
+                    class="card-item card-5 w-40 h-64 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/20 overflow-hidden">
+                    <img alt="Dorso Carta 5" class="w-full h-full object-cover opacity-80"
+                        src="dorsos/Carta%205%20-%20Dorso.jpg" />
+                    <div class="absolute inset-0 foil-texture pointer-events-none"></div>
+                    <div class="absolute inset-0 border-[0.5px] border-primary/30 rounded-2xl m-2"></div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full space-y-8 flex flex-col items-center">
+            <div class="text-center space-y-1">
+                <p class="text-sm font-light text-[#BB8080] italic">Tomate un instante.</p>
+                <p class="text-sm font-light text-[#BB8080] italic">Conectá con tu respiración.</p>
+                <p class="text-sm font-light text-[#BB8080] italic">Cuando estés lista, elegí una
+                    carta.</p>
+            </div>
+            <button id="btn-comenzar"
+                class="group relative px-12 py-4 bg-[#BB8080] border border-primary/40 dark:border-primary/60 rounded-full transition-all duration-300 hover:border-primary gold-glow active:scale-95">
+                <span
+                    class="relative z-10 text-white font-display text-xl tracking-wide uppercase group-hover:text-primary transition-colors">
+                    Comenzar
+                </span>
+                <div
+                    class="absolute inset-0 rounded-full bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                </div>
+                <div
+                    class="absolute -inset-1 rounded-full border border-primary/10 scale-105 group-hover:scale-110 transition-transform duration-500">
+                </div>
+            </button>
+
+            <a href="index.html"
+                class="text-sm font-sans font-medium text-stone-500 hover:text-primary transition-colors tracking-widest uppercase mt-4">
+                Volver
+            </a>
+        </div>
+    </main>
+    <div class="fixed top-20 left-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="fixed bottom-20 right-10 w-48 h-48 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+    <script>
+        // Simple parallax logic for the card container based on device orientation or mouse move
+        document.addEventListener('mousemove', (e) => {
+            const container = document.querySelector('.fan-container');
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 40;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 40;
+            container.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+        // Toggle Dark Mode (for demo purposes)
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+        // Check initial preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+
+    <!-- Cloud Modal -->
+    <div id="card-modal"
+        class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <div
+            class="relative w-full max-w-md p-8 bg-[#fdf8f5] dark:bg-[#EFC9C8] rounded-3xl shadow-2xl transform scale-95 transition-transform duration-300 flex flex-col items-center border border-primary/30">
+            <button id="btn-close-modal"
+                class="absolute top-4 right-4 text-[#BB8080] hover:text-stone-600 transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+
+            <h2 class="text-3xl font-display text-[#C2A059] mb-6 text-center">Tu Mensaje</h2>
+
+            <div class="relative w-64 h-96 mb-8 perspective-1000 group">
+                <div id="card-display" class="w-full h-full relative preserve-3d transition-transform duration-700">
+                    <!-- Back of card (Pattern/Dorso) - Initially Visible -->
+                    <div class="absolute inset-0 backface-hidden">
+                        <img id="shuffling-img" src="dorsos/Carta%201%20-%20Dorso.jpg" alt="Dorso"
+                            class="w-full h-full object-cover rounded-2xl shadow-lg border border-primary/20">
+                    </div>
+                    <!-- Front of card (Message/Frente) - Initially Hidden (Rotated) -->
+                    <div class="absolute inset-0 backface-hidden rotate-y-180">
+                        <img id="revealed-img" src="" alt="Frente"
+                            class="w-full h-full object-cover rounded-2xl shadow-lg border border-primary/20">
+                    </div>
+                </div>
+            </div>
+
+            <button id="btn-reveal"
+                class="px-10 py-3 bg-[#BB8080] text-white font-display text-lg tracking-wide uppercase rounded-full hover:bg-[#a67070] transition-colors gold-glow shadow-md">
+                Ver mi carta
+            </button>
+
+            <div id="download-container" class="hidden mt-4 flex flex-col items-center gap-2">
+                <a id="btn-download-frente" href="#" download="Mensaje_Frente.jpg"
+                    class="flex items-center gap-2 text-[#BB8080] hover:text-[#966060] font-sans font-medium transition-colors">
+                    <span class="material-symbols-outlined text-xl">download</span>
+                    Descargar Mensaje (Frente)
+                </a>
+                <a id="btn-download-dorso" href="#" download="Mensaje_Dorso.jpg"
+                    class="flex items-center gap-2 text-[#BB8080] hover:text-[#966060] font-sans font-medium transition-colors">
+                    <span class="material-symbols-outlined text-xl">download</span>
+                    Descargar Diseño (Dorso)
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Card Image Assets
+        // Arrays for both sides. Indices 0-16 correspond to Carta 1-17.
+        const totalCards = 17;
+
+        const btnComenzar = document.getElementById('btn-comenzar');
+        const modal = document.getElementById('card-modal');
+        const btnClose = document.getElementById('btn-close-modal');
+        const btnReveal = document.getElementById('btn-reveal');
+        const downloadContainer = document.getElementById('download-container');
+        const btnDownloadFrente = document.getElementById('btn-download-frente');
+        const btnDownloadDorso = document.getElementById('btn-download-dorso');
+        const shufflingImg = document.getElementById('shuffling-img'); // The Dorso side
+        const revealedImg = document.getElementById('revealed-img');   // The Frente side
+        const cardDisplay = document.getElementById('card-display');
+
+        let shuffleInterval;
+        let isShuffling = false;
+        let isRevealed = false;
+
+        // Open Modal and Start Shuffling
+        btnComenzar.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+            void modal.offsetWidth; // Trigger reflow
+            modal.classList.remove('opacity-0');
+            modal.querySelector('div').classList.remove('scale-95');
+            modal.querySelector('div').classList.add('scale-100');
+
+            // Reset Flip
+            cardDisplay.classList.remove('rotate-y-180');
+
+            startShuffling();
+
+            // Reset UI
+            btnReveal.textContent = "Ver mi carta";
+            btnReveal.disabled = false;
+            isRevealed = false;
+            downloadContainer.classList.add('hidden');
+        });
+
+        // Close Modal
+        const closeModal = () => {
+            modal.classList.add('opacity-0');
+            modal.querySelector('div').classList.remove('scale-100');
+            modal.querySelector('div').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                stopShuffling();
+                cardDisplay.classList.remove('rotate-y-180'); // Reset flip
+            }, 300);
+        }
+
+        btnClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        function startShuffling() {
+            if (isShuffling) return;
+            isShuffling = true;
+            let index = 1;
+            shuffleInterval = setInterval(() => {
+                index = (index % totalCards) + 1;
+                shufflingImg.src = `dorsos/Carta%20${index}%20-%20Dorso.jpg`;
+            }, 100);
+        }
+
+        function stopShuffling() {
+            clearInterval(shuffleInterval);
+            isShuffling = false;
+        }
+
+        // Reveal / Toggle Logic
+        btnReveal.addEventListener('click', () => {
+            if (isShuffling) {
+                stopShuffling();
+                isRevealed = true;
+
+                // 1. Pick Random Card
+                const randomNum = Math.floor(Math.random() * totalCards) + 1;
+                const finalDorso = `dorsos/Carta%20${randomNum}%20-%20Dorso.jpg`;
+                const finalFrente = `frente/Carta%20${randomNum}%20-%20Frente.jpg`;
+
+                // 2. Set Images
+                shufflingImg.src = finalDorso;
+                revealedImg.src = finalFrente;
+
+                // 3. Flip Card
+                cardDisplay.classList.add('rotate-y-180');
+
+                // 4. UI Feedback
+                btnReveal.textContent = "Girar carta"; // Changed text to indicate toggle action
+
+                // 5. Prepare downloads
+                btnDownloadFrente.href = finalFrente;
+                btnDownloadDorso.href = finalDorso;
+                downloadContainer.classList.remove('hidden');
+            } else if (isRevealed) {
+                // Toggle Flip
+                cardDisplay.classList.toggle('rotate-y-180');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

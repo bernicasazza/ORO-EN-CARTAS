@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Sobre las Creadoras - Oro en Cartas</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#c28b8b",
+                        "background-light": "#f2d1ca",
+                        "background-dark": "#1a1616",
+                        "card-peach": "#efc6bc",
+                        "card-border": "#d63d2e",
+                        "gold-text": "#b89b5e",
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        body: ["Lora", "serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        'xl': '2rem',
+                        '2xl': '3rem',
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .speckled-bg {
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.4) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .card-shadow {
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        .title-gradient {
+            background: linear-gradient(to bottom, #b89b5e, #8e7340);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark min-h-screen transition-colors duration-300">
+    <header class="p-6 md:p-8 flex justify-between items-center">
+        <div class="w-16 h-16 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center p-2 shadow-sm">
+            <img alt="MiClub Logo" class="object-contain w-full h-full" src="logo%20dorado.png" />
+        </div>
+        <div class="text-center hidden md:block">
+            <span class="text-gold-text uppercase tracking-[0.3em] text-xs font-semibold">Marina Borensztein</span>
+        </div>
+        <button
+            class="p-2 rounded-full bg-white/20 dark:bg-white/10 backdrop-blur-md hover:scale-110 transition-transform"
+            id="theme-toggle">
+            <svg class="hidden w-5 h-5 text-gray-800 dark:text-gray-200" fill="currentColor" id="theme-toggle-dark-icon"
+                viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+            <svg class="hidden w-5 h-5 text-gray-800 dark:text-gray-200" fill="currentColor"
+                id="theme-toggle-light-icon" viewBox="0 0 20 20">
+                <path clip-rule="evenodd"
+                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                    fill-rule="evenodd"></path>
+            </svg>
+        </button>
+    </header>
+    <main class="max-w-7xl mx-auto px-4 pb-20">
+        <div class="text-center mb-16">
+            <h1 class="font-display text-5xl md:text-7xl text-gold-text mb-4">Sobre las Creadoras</h1>
+            <p class="font-body italic text-primary dark:text-gray-400 text-xl">Inspiración, arte y bienestar</p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 px-4 md:px-12">
+            <!-- Marina Borensztein (Left) -->
+            <div class="relative group">
+                <div
+                    class="bg-card-peach dark:bg-rose-900/20 speckled-bg p-8 md:p-12 rounded-2xl border-2 border-card-border relative overflow-hidden card-shadow transform transition-transform duration-500 hover:-translate-y-2">
+                    <div class="absolute inset-2 border border-card-border/30 rounded-xl pointer-events-none"></div>
+                    <div class="flex flex-col items-center text-center relative z-10">
+                        <div
+                            class="w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-white/50 overflow-hidden mb-8 shadow-lg">
+                            <img alt="Marina Borensztein" class="w-full h-full object-cover" src="marina%20foto.png" />
+                        </div>
+                        <h2 class="font-display text-3xl md:text-4xl text-primary font-bold mb-4">Marina Borensztein
+                        </h2>
+                        <div
+                            class="space-y-4 text-primary/90 dark:text-gray-200 font-body leading-relaxed text-sm md:text-base">
+                            <p class="font-bold">es argentina, autora de tres best sellers. Su primer libro "Enfermé
+                                para Sanar", Diario íntimo de una victoria, fue el puntapié inicial de un cambio en la
+                                vida de la autora que tuvo cáncer de mama y encontró en la enfermedad una gran
+                                oportunidad de desarrollo personal y profesional.</p>
+                            <p>Gracias al éxito de este primer libro, Marina comenzó un nuevo camino en su vida. Ella se
+                                autodenomina "Motivadora social de vida saludable y felicidad" y a través de las redes
+                                sociales y los medios de comunicación se hizo muy conocida por ayudar a las personas a
+                                cambiar sus hábitos para llevar una vida saludable.</p>
+                            <p>Luego escribió "Así me cuido yo" y "Paz, Amor y Jugo Verde". Además da charlas
+                                presenciales o virtuales en diferentes lugares para seguir enseñando todas sus
+                                herramientas.</p>
+                            <p class="pt-4 italic font-medium">Podés encontrarla en <span
+                                    class="underline cursor-pointer">@marinaborensztein</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cecilia Ferreres (Right) -->
+            <div class="relative group">
+                <div
+                    class="bg-card-peach dark:bg-rose-900/20 speckled-bg p-8 md:p-12 rounded-2xl border-2 border-card-border relative overflow-hidden card-shadow transform transition-transform duration-500 hover:-translate-y-2">
+                    <div class="absolute inset-2 border border-card-border/30 rounded-xl pointer-events-none"></div>
+                    <div class="flex flex-col items-center text-center relative z-10">
+                        <div
+                            class="w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-white/50 overflow-hidden mb-8 shadow-lg">
+                            <img alt="Cecilia Ferreres" class="w-full h-full object-cover" src="cecilia%20foto.png" />
+                        </div>
+                        <h2 class="font-display text-3xl md:text-4xl text-primary font-bold mb-4">Cecilia Ferreres</h2>
+                        <div
+                            class="space-y-4 text-primary/90 dark:text-gray-200 font-body leading-relaxed text-sm md:text-base">
+                            <p class="font-bold">nació en Buenos Aires en 1977. Arquitecta y profesional del mundo del
+                                diseño desde 2001.</p>
+                            <p>A partir de varios sucesos adversos, comenzó una búsqueda y exploración personal que la
+                                ligaron al mundo del arte y la meditación. Apasionada por revelar la belleza de este
+                                mundo, se convirtió en instructora de kundalini yoga y en dibujante de emociones.</p>
+                            <p>La ilustración se transformó no solo en una herramienta de sanación sino en un nuevo
+                                lenguaje para transmitir las experiencias del alma.</p>
+                            <p class="pt-4 italic font-medium">Podés encontrarla en <span
+                                    class="underline cursor-pointer">@cecilia.ferreres</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-20 flex flex-col items-center">
+            <p class="font-body text-primary dark:text-gray-400 mb-8 text-center px-4">
+                Tomate un instante. Conectá con tu respiración.<br />Cuando estés lista, regresá a tus cartas.
+            </p>
+            <a class="bg-primary hover:bg-primary/90 text-white font-display text-2xl tracking-widest px-12 py-4 rounded-full shadow-lg transition-all transform hover:scale-105 uppercase"
+                href="code.html">
+                Volver
+            </a>
+        </div>
+    </main>
+    <script>
+        // Dark mode logic
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        // Check initial theme
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+        themeToggleBtn.addEventListener('click', function () {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
