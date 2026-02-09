@@ -43,6 +43,36 @@
             justify-content: center;
             align-items: flex-end;
             padding-bottom: 40px;
+            position: relative;
+            /* Context for sparkles */
+        }
+
+        /* Sparkle Particle Styles */
+        .gold-sparkle {
+            position: absolute;
+            background: radial-gradient(circle, #fff 10%, #FFD700 40%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            z-index: 60;
+            /* Above cards */
+        }
+
+        @keyframes float-sparkle {
+            0% {
+                transform: translate(0, 0) scale(0);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+                transform: translate(0, -20px) scale(1);
+            }
+
+            100% {
+                transform: translate(var(--tx), -100px) scale(0);
+                opacity: 0;
+            }
         }
 
         .card-item {
@@ -397,6 +427,44 @@ selection:bg-primary/30 overflow-x-hidden">
         document.documentElement.classList.remove('dark');
         // Do NOT rely on localStorage for initial state here as requested
         updateThemeUI(); // Ensure UI assumes correct state on load
+
+        // Sparkle Generation Logic
+        function createSparkle() {
+            const container = document.querySelector('.fan-container');
+            if (!container) return;
+
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('gold-sparkle');
+
+            // Randomize properties
+            // Start closer to center to explode outwards
+            const startX = 30 + Math.random() * 40; // 30% to 70%
+            const startY = 60 + Math.random() * 40; // Lower half
+
+            const size = Math.random() * 6 + 2; // 2px to 8px
+            const duration = Math.random() * 1.5 + 1.5; // 1.5s to 3s
+
+            // Calculate outward movement
+            const centerOffset = startX - 50;
+            const spreadFactor = 3 + Math.random() * 4; // Factor to push outwards
+            const tx = centerOffset * spreadFactor;
+
+            sparkle.style.left = `${startX}%`;
+            sparkle.style.top = `${startY}%`;
+            sparkle.style.width = `${size}px`;
+            sparkle.style.height = `${size}px`;
+            sparkle.style.setProperty('--tx', `${tx}px`);
+            sparkle.style.animation = `float-sparkle ${duration}s ease-out forwards`;
+
+            container.appendChild(sparkle);
+
+            setTimeout(() => {
+                if (sparkle.parentNode) sparkle.remove();
+            }, duration * 1000);
+        }
+
+        // Generate sparkles periodically
+        setInterval(createSparkle, 150); // New sparkle every 150ms
     </script>
 
     <!-- Cloud Modal -->
