@@ -7,8 +7,10 @@
     <title>Sobre las Creadoras - Oro en Cartas</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;display=swap"
+    rel="stylesheet" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;display=swap"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
         rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
     <script>
@@ -56,27 +58,32 @@
 </head>
 
 <body class="bg-background-light dark:bg-background-dark min-h-screen transition-colors duration-300">
-    <header class="p-6 md:p-8 flex justify-between items-center">
-        <div class="w-16 h-16 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center p-2 shadow-sm">
-            <img alt="MiClub Logo" class="object-contain w-full h-full" src="logo%20dorado.png" />
+    <header class="p-6 md:p-8 flex justify-between items-center relative z-50">
+        <div class="relative">
+            <button id="logo-btn"
+                class="w-16 h-16 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center p-2 shadow-sm hover:scale-105 transition-transform focus:outline-none">
+                <img alt="MiClub Logo" class="object-contain w-full h-full" src="logo%20dorado.png" />
+            </button>
+            <!-- Logo Menu (Absolute positioned) -->
+            <div id="logo-menu"
+                class="hidden absolute top-full left-0 mt-2 w-64 bg-background-light dark:bg-stone-800 rounded-2xl shadow-xl border border-primary/20 p-2 z-[60] flex flex-col gap-1 origin-top-left transition-all duration-200 opacity-0 scale-95 transform">
+                <button id="menu-logout"
+                    class="w-full text-left px-4 py-3 rounded-xl hover:bg-primary/10 text-stone-600 dark:text-stone-300 font-sans text-sm transition-colors flex items-center gap-3">
+                    <span class="material-symbols-outlined text-xl">logout</span>
+                    Cerrar sesión
+                </button>
+                <button id="menu-theme-toggle"
+                    class="w-full text-left px-4 py-3 rounded-xl hover:bg-primary/10 text-stone-600 dark:text-stone-300 font-sans text-sm transition-colors flex items-center gap-3">
+                    <span id="theme-icon" class="material-symbols-outlined text-xl">dark_mode</span>
+                    <span id="theme-text">Cambiar el modo a oscuro</span>
+                </button>
+            </div>
         </div>
-        <div class="text-center hidden md:block">
+        <div class="text-center hidden md:block flex-1">
             <span class="text-gold-text uppercase tracking-[0.3em] text-xs font-semibold">Marina Borensztein</span>
         </div>
-        <button
-            class="p-2 rounded-full bg-white/20 dark:bg-white/10 backdrop-blur-md hover:scale-110 transition-transform"
-            id="theme-toggle">
-            <svg class="hidden w-5 h-5 text-gray-800 dark:text-gray-200" fill="currentColor" id="theme-toggle-dark-icon"
-                viewBox="0 0 20 20">
-                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-            </svg>
-            <svg class="hidden w-5 h-5 text-gray-800 dark:text-gray-200" fill="currentColor"
-                id="theme-toggle-light-icon" viewBox="0 0 20 20">
-                <path clip-rule="evenodd"
-                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                    fill-rule="evenodd"></path>
-            </svg>
-        </button>
+        <!-- Spacer to balance the header since right button is removed -->
+        <div class="w-16 hidden md:block"></div>
     </header>
     <main class="max-w-7xl mx-auto px-4 pb-20">
         <div class="text-center mb-16">
@@ -154,39 +161,77 @@
         </div>
     </main>
     <script>
-        // Dark mode logic
-        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        // Check initial theme
-        if (localStorage.getItem('color-theme') === 'dark') {
-            document.documentElement.classList.add('dark');
-            themeToggleLightIcon.classList.remove('hidden');
-        } else {
-            document.documentElement.classList.remove('dark');
-            themeToggleDarkIcon.classList.remove('hidden');
-        }
-        themeToggleBtn.addEventListener('click', function () {
-            themeToggleDarkIcon.classList.toggle('hidden');
-            themeToggleLightIcon.classList.toggle('hidden');
-            if (localStorage.getItem('color-theme')) {
-                if (localStorage.getItem('color-theme') === 'light') {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                }
+        // Logo Menu Logic
+        const logoBtn = document.getElementById('logo-btn');
+        const logoMenu = document.getElementById('logo-menu');
+        const menuLogout = document.getElementById('menu-logout');
+        const menuThemeToggle = document.getElementById('menu-theme-toggle');
+        const themeText = document.getElementById('theme-text');
+        const themeIcon = document.getElementById('theme-icon');
+
+        function toggleMenu() {
+            if (logoMenu.classList.contains('hidden')) {
+                logoMenu.classList.remove('hidden');
+                // Small delay to allow transition
+                requestAnimationFrame(() => {
+                    logoMenu.classList.remove('opacity-0', 'scale-95');
+                    logoMenu.classList.add('opacity-100', 'scale-100');
+                });
             } else {
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                }
+                logoMenu.classList.remove('opacity-100', 'scale-100');
+                logoMenu.classList.add('opacity-0', 'scale-95');
+                setTimeout(() => {
+                    logoMenu.classList.add('hidden');
+                }, 200);
+            }
+        }
+
+        logoBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMenu();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!logoMenu.classList.contains('hidden') && !logoMenu.contains(e.target) && !logoBtn.contains(e.target)) {
+                toggleMenu();
             }
         });
+
+        // Logout
+        menuLogout.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+
+        // Theme Logic
+        function updateThemeUI() {
+            const isDark = document.documentElement.classList.contains('dark');
+            if (isDark) {
+                themeText.innerText = "Cambiar a modo claro";
+                themeIcon.innerText = "light_mode";
+            } else {
+                themeText.innerText = "Cambiar a modo oscuro";
+                themeIcon.innerText = "dark_mode";
+            }
+        }
+
+        menuThemeToggle.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+            updateThemeUI();
+        });
+
+        // Check initial preference from localStorage or system (Default to Dark)
+        if (localStorage.getItem('color-theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+        updateThemeUI(); // Ensure UI assumes correct state on load
     </script>
 
 </body>

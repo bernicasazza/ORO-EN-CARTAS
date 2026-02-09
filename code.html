@@ -187,16 +187,30 @@
 <body class="bg-background-light dark:bg-background-dark text-stone-800 dark:text-stone-900 min-h-screen font-sans
 selection:bg-primary/30 overflow-x-hidden">
     <header class="p-6 flex justify-between items-center relative z-50">
-        <div class="flex-1 flex flex-col items-start gap-2">
-            <img alt="Logo" class="h-16 md:h-24 w-auto object-contain" src="miclub4.png" />
-            <a href="index.html"
-                class="text-sm font-sans font-medium text-stone-500 hover:text-primary transition-colors tracking-widest uppercase ml-2">
-                Salir
-            </a>
+        <div class="flex-1 flex flex-col items-start gap-2 relative">
+            <button id="logo-btn" class="focus:outline-none transition-transform active:scale-95">
+                <img alt="Logo" class="h-16 md:h-24 w-auto object-contain cursor-pointer" src="logo%20dorado.png" />
+            </button>
+
+            <!-- Logo Menu (Absolute positioned) -->
+            <div id="logo-menu"
+                class="hidden absolute top-full left-0 mt-2 w-64 bg-background-light dark:bg-stone-800 rounded-2xl shadow-xl border border-primary/20 p-2 z-[60] flex flex-col gap-1 origin-top-left transition-all duration-200 opacity-0 scale-95 transform">
+                <button id="menu-logout"
+                    class="w-full text-left px-4 py-3 rounded-xl hover:bg-primary/10 text-stone-600 dark:text-stone-300 font-sans text-sm transition-colors flex items-center gap-3">
+                    <span class="material-symbols-outlined text-xl">logout</span>
+                    Cerrar sesión
+                </button>
+                <button id="menu-theme-toggle"
+                    class="w-full text-left px-4 py-3 rounded-xl hover:bg-primary/10 text-stone-600 dark:text-stone-300 font-sans text-sm transition-colors flex items-center gap-3">
+                    <span id="theme-icon" class="material-symbols-outlined text-xl">dark_mode</span>
+                    <span id="theme-text">Cambiar el modo a oscuro</span>
+                </button>
+            </div>
         </div>
         <div class="text-center shrink-0">
             <div class="flex flex-col items-center">
-                <img alt="Mariposa Dorada" class="h-8 w-auto mb-1 object-contain" src="mariposa%20dorada.png" />
+                <img alt="Mariposa Dorada" class="h-8 w-auto mb-1 object-contain brightness-75 contrast-125"
+                    src="mariposa%20dorada.png" />
                 <p
                     class="text-xs tracking-[0.2em] uppercase font-light text-stone-500 dark:text-stone-600 whitespace-nowrap">
                     Marina Borensztein</p>
@@ -302,25 +316,90 @@ selection:bg-primary/30 overflow-x-hidden">
     <div class="fixed top-20 left-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
     <div class="fixed bottom-20 right-10 w-48 h-48 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
     <script>
+        // Logo Menu Logic
+        const logoBtn = document.getElementById('logo-btn');
+        const logoMenu = document.getElementById('logo-menu');
+        const menuLogout = document.getElementById('menu-logout');
+        const menuThemeToggle = document.getElementById('menu-theme-toggle');
+        const themeText = document.getElementById('theme-text');
+        const themeIcon = document.getElementById('theme-icon');
+
+        function toggleMenu() {
+            if (logoMenu.classList.contains('hidden')) {
+                logoMenu.classList.remove('hidden');
+                // Small delay to allow transition
+                requestAnimationFrame(() => {
+                    logoMenu.classList.remove('opacity-0', 'scale-95');
+                    logoMenu.classList.add('opacity-100', 'scale-100');
+                });
+            } else {
+                logoMenu.classList.remove('opacity-100', 'scale-100');
+                logoMenu.classList.add('opacity-0', 'scale-95');
+                setTimeout(() => {
+                    logoMenu.classList.add('hidden');
+                }, 200);
+            }
+        }
+
+        logoBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMenu();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!logoMenu.classList.contains('hidden') && !logoMenu.contains(e.target) && !logoBtn.contains(e.target)) {
+                toggleMenu();
+            }
+        });
+
+        // Logout
+        menuLogout.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+
+        // Theme Logic
+        function updateThemeUI() {
+            const isDark = document.documentElement.classList.contains('dark');
+            if (isDark) {
+                themeText.innerText = "Cambiar a modo claro";
+                themeIcon.innerText = "light_mode";
+            } else {
+                themeText.innerText = "Cambiar a modo oscuro";
+                themeIcon.innerText = "dark_mode";
+            }
+        }
+
+        // Initialize Theme UI
+        updateThemeUI();
+
+        menuThemeToggle.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+            updateThemeUI();
+        });
+
         // Simple parallax logic for the card container based on device orientation or mouse move
         document.addEventListener('mousemove', (e) => {
             const container = document.querySelector('.fan-container');
-            const xAxis = (window.innerWidth / 2 - e.pageX) / 40;
-            const yAxis = (window.innerHeight / 2 - e.pageY) / 40;
-            container.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-        });
-        // Toggle Dark Mode (for demo purposes)
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-            if (event.matches) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
+            if (container) {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 40;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 40;
+                container.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
             }
         });
-        // Check initial preference
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+
+        // Check initial preference from localStorage or system (Default to Dark)
+        if (localStorage.getItem('color-theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
             document.documentElement.classList.add('dark');
         }
+        updateThemeUI(); // Ensure UI assumes correct state on load
     </script>
 
     <!-- Cloud Modal -->
@@ -336,7 +415,8 @@ selection:bg-primary/30 overflow-x-hidden">
             <h2 class="text-4xl font-display text-[#C2A059] mb-8 text-center">Tu Mensaje</h2>
 
             <div class="relative w-80 h-[500px] mb-8 perspective-1000 group">
-                <div id="card-display" class="w-full h-full relative preserve-3d transition-transform duration-700">
+                <div id="card-display"
+                    class="w-full h-full relative preserve-3d transition-transform duration-[2500ms] cursor-pointer">
                     <!-- Back of card (Pattern/Dorso) - Initially Visible -->
                     <div class="absolute inset-0 backface-hidden">
                         <img id="shuffling-img" src="dorsos/Carta%201%20-%20Dorso.jpg" alt="Dorso"
@@ -350,10 +430,10 @@ selection:bg-primary/30 overflow-x-hidden">
                 </div>
             </div>
 
-            <button id="btn-reveal"
-                class="px-12 py-4 bg-[#BB8080] text-white font-display text-xl tracking-wide uppercase rounded-full hover:bg-[#a67070] transition-colors gold-glow shadow-md">
-                Ver mi carta
-            </button>
+            <p id="instruction-text"
+                class="text-center text-[#BB8080] font-sans font-light italic mt-4 mb-2 animate-pulse">
+                Tocá la carta para detener
+            </p>
 
             <div id="download-container" class="hidden mt-4 flex flex-col items-center gap-2">
                 <a id="btn-download-frente" href="#" download="Mensaje_Frente.jpg"
@@ -378,13 +458,13 @@ selection:bg-primary/30 overflow-x-hidden">
         const btnComenzar = document.getElementById('btn-comenzar');
         const modal = document.getElementById('card-modal');
         const btnClose = document.getElementById('btn-close-modal');
-        const btnReveal = document.getElementById('btn-reveal');
         const downloadContainer = document.getElementById('download-container');
         const btnDownloadFrente = document.getElementById('btn-download-frente');
         const btnDownloadDorso = document.getElementById('btn-download-dorso');
         const shufflingImg = document.getElementById('shuffling-img'); // The Dorso side
         const revealedImg = document.getElementById('revealed-img');   // The Frente side
         const cardDisplay = document.getElementById('card-display');
+        const instructionText = document.getElementById('instruction-text');
 
         let shuffleInterval;
         let isShuffling = false;
@@ -404,9 +484,8 @@ selection:bg-primary/30 overflow-x-hidden">
             startShuffling();
 
             // Reset UI
-            btnReveal.textContent = "Ver mi carta";
-            btnReveal.disabled = false;
             isRevealed = false;
+            instructionText.innerText = "Tocá la carta para detener";
             downloadContainer.classList.add('hidden');
         });
 
@@ -443,7 +522,7 @@ selection:bg-primary/30 overflow-x-hidden">
         }
 
         // Reveal / Toggle Logic
-        btnReveal.addEventListener('click', () => {
+        cardDisplay.addEventListener('click', () => {
             if (isShuffling) {
                 stopShuffling();
                 isRevealed = true;
@@ -460,8 +539,8 @@ selection:bg-primary/30 overflow-x-hidden">
                 // 3. Flip Card
                 cardDisplay.classList.add('rotate-y-180');
 
-                // 4. UI Feedback
-                btnReveal.textContent = "Girar carta"; // Changed text to indicate toggle action
+                // 4. Update instruction
+                instructionText.innerText = "Tocá la carta para girarla";
 
                 // 5. Prepare downloads
                 btnDownloadFrente.href = finalFrente;
