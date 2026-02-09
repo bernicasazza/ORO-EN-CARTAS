@@ -19,8 +19,8 @@
                 extend: {
                     colors: {
                         primary: "#c2a661", // Gold foil color
-                        "background-light": "#fdf8f5", // Light pastel peach/cream
-                        "background-dark": "#EFC9C8", // Custom pink background
+                        "background-light": "#ffffff", // Pure white for light mode
+                        "background-dark": "#EFC9C8", // Custom pink background for dark mode
                         "accent-soft": "#e8d5cc",
                     },
                     fontFamily: {
@@ -393,12 +393,9 @@ selection:bg-primary/30 overflow-x-hidden">
             }
         });
 
-        // Check initial preference from localStorage or system (Default to Dark)
-        if (localStorage.getItem('color-theme') === 'light') {
-            document.documentElement.classList.remove('dark');
-        } else {
-            document.documentElement.classList.add('dark');
-        }
+        // Check initial preference (Force Default to Light)
+        document.documentElement.classList.remove('dark');
+        // Do NOT rely on localStorage for initial state here as requested
         updateThemeUI(); // Ensure UI assumes correct state on load
     </script>
 
@@ -536,16 +533,18 @@ selection:bg-primary/30 overflow-x-hidden">
                 shufflingImg.src = finalDorso;
                 revealedImg.src = finalFrente;
 
-                // 3. Flip Card
-                cardDisplay.classList.add('rotate-y-180');
+                // 3. Flip Card (With Delay)
+                setTimeout(() => {
+                    cardDisplay.classList.add('rotate-y-180');
+                    // 4. Update instruction (After flip starts)
+                    instructionText.innerText = "Tocá la carta para girarla";
+                    // 5. Show downloads
+                    downloadContainer.classList.remove('hidden');
+                }, 1200); // 1.2 second delay
 
-                // 4. Update instruction
-                instructionText.innerText = "Tocá la carta para girarla";
-
-                // 5. Prepare downloads
+                // Prepare downloads (Links updated immediately)
                 btnDownloadFrente.href = finalFrente;
                 btnDownloadDorso.href = finalDorso;
-                downloadContainer.classList.remove('hidden');
             } else if (isRevealed) {
                 // Toggle Flip
                 cardDisplay.classList.toggle('rotate-y-180');
