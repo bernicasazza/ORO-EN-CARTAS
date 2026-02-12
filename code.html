@@ -272,22 +272,19 @@ selection:bg-primary/30 overflow-x-hidden">
             <div class="fan-container w-full max-w-2xl">
                 <div
                     class="card-item card-1 w-56 h-80 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/20 overflow-hidden">
-                    <img alt="Dorso Carta 1" class="w-full h-full object-cover opacity-80"
-                        src="dorsos/Carta%201%20-%20Dorso.jpg" />
+                    <img alt="Dorso Carta 1" class="w-full h-full object-cover opacity-80" src="dorsos/dorso 1.png" />
                     <div class="absolute inset-0 foil-texture pointer-events-none"></div>
                     <div class="absolute inset-0 border-[0.5px] border-primary/30 rounded-2xl m-2"></div>
                 </div>
                 <div
                     class="card-item card-2 w-56 h-80 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/20 overflow-hidden">
-                    <img alt="Dorso Carta 2" class="w-full h-full object-cover opacity-80"
-                        src="dorsos/Carta%202%20-%20Dorso.jpg" />
+                    <img alt="Dorso Carta 2" class="w-full h-full object-cover opacity-80" src="dorsos/dorso 2.png" />
                     <div class="absolute inset-0 foil-texture pointer-events-none"></div>
                     <div class="absolute inset-0 border-[0.5px] border-primary/30 rounded-2xl m-2"></div>
                 </div>
                 <div
                     class="card-item card-3 w-56 h-80 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/40 overflow-hidden gold-glow">
-                    <img alt="Dorso Carta 3" class="w-full h-full object-cover opacity-90"
-                        src="dorsos/Carta%203%20-%20Dorso.jpg" />
+                    <img alt="Dorso Carta 3" class="w-full h-full object-cover opacity-90" src="dorsos/dorso 3.png" />
                     <div class="absolute inset-0 foil-texture pointer-events-none"></div>
                     <div class="absolute inset-0 border-2 border-primary/20 rounded-2xl m-2"></div>
                     <div class="absolute -top-8 -right-8 w-6 h-6 bg-white animate-twinkle z-50 shadow-[0_0_15px_rgba(255,255,255,0.8)]"
@@ -305,15 +302,13 @@ selection:bg-primary/30 overflow-x-hidden">
                 </div>
                 <div
                     class="card-item card-4 w-56 h-80 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/20 overflow-hidden">
-                    <img alt="Dorso Carta 4" class="w-full h-full object-cover opacity-80"
-                        src="dorsos/Carta%204%20-%20Dorso.jpg" />
+                    <img alt="Dorso Carta 4" class="w-full h-full object-cover opacity-80" src="dorsos/dorso 4.png" />
                     <div class="absolute inset-0 foil-texture pointer-events-none"></div>
                     <div class="absolute inset-0 border-[0.5px] border-primary/30 rounded-2xl m-2"></div>
                 </div>
                 <div
                     class="card-item card-5 w-56 h-80 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/20 overflow-hidden">
-                    <img alt="Dorso Carta 5" class="w-full h-full object-cover opacity-80"
-                        src="dorsos/Carta%205%20-%20Dorso.jpg" />
+                    <img alt="Dorso Carta 5" class="w-full h-full object-cover opacity-80" src="dorsos/dorso 5.png" />
                     <div class="absolute inset-0 foil-texture pointer-events-none"></div>
                     <div class="absolute inset-0 border-[0.5px] border-primary/30 rounded-2xl m-2"></div>
                 </div>
@@ -484,7 +479,7 @@ selection:bg-primary/30 overflow-x-hidden">
                     class="w-full h-full relative preserve-3d transition-transform duration-[2500ms] cursor-pointer">
                     <!-- Back of card (Pattern/Dorso) - Initially Visible -->
                     <div class="absolute inset-0 backface-hidden">
-                        <img id="shuffling-img" src="dorsos/Carta%201%20-%20Dorso.jpg" alt="Dorso"
+                        <img id="shuffling-img" src="dorsos/dorso 1.png" alt="Dorso"
                             class="w-full h-full object-cover rounded-2xl shadow-lg border border-primary/20">
                     </div>
                     <!-- Front of card (Message/Frente) - Initially Hidden (Rotated) -->
@@ -501,12 +496,12 @@ selection:bg-primary/30 overflow-x-hidden">
             </p>
 
             <div id="download-container" class="hidden mt-4 flex flex-col items-center gap-2">
-                <a id="btn-download-frente" href="#" download="Mensaje_Frente.jpg"
+                <a id="btn-download-frente" href="#" download="Mensaje_Frente.png"
                     class="flex items-center gap-2 text-[#BB8080] hover:text-[#966060] font-sans font-medium transition-colors">
                     <span class="material-symbols-outlined text-xl">download</span>
                     Descargar Mensaje (Frente)
                 </a>
-                <a id="btn-download-dorso" href="#" download="Mensaje_Dorso.jpg"
+                <a id="btn-download-dorso" href="#" download="Mensaje_Dorso.png"
                     class="flex items-center gap-2 text-[#BB8080] hover:text-[#966060] font-sans font-medium transition-colors">
                     <span class="material-symbols-outlined text-xl">download</span>
                     Descargar Diseño (Dorso)
@@ -517,8 +512,8 @@ selection:bg-primary/30 overflow-x-hidden">
 
     <script>
         // Card Image Assets
-        // Arrays for both sides. Indices 0-16 correspond to Carta 1-17.
-        const totalCards = 17;
+        // Arrays for both sides. Indices 0-48 correspond to Carta 1-48.
+        const totalCards = 48;
 
         const btnComenzar = document.getElementById('btn-comenzar');
         const modal = document.getElementById('card-modal');
@@ -527,28 +522,29 @@ selection:bg-primary/30 overflow-x-hidden">
         const btnDownloadFrente = document.getElementById('btn-download-frente');
         const btnDownloadDorso = document.getElementById('btn-download-dorso');
         const shufflingImg = document.getElementById('shuffling-img'); // The Dorso side
-        const revealedImg = document.getElementById('revealed-img');   // The Frente side
+        const revealedImg = document.getElementById('revealed-img'); // The Frente side
         const cardDisplay = document.getElementById('card-display');
         const instructionText = document.getElementById('instruction-text');
 
         let shuffleInterval;
         let isShuffling = false;
-        let isRevealed = false;
+        let isRevealed = false; // "Waiting for click to reveal"
 
         // Open Modal and Start Shuffling
         btnComenzar.addEventListener('click', () => {
             modal.classList.remove('hidden');
-            void modal.offsetWidth; // Trigger reflow
+            // Force reflow
+            void modal.offsetWidth;
             modal.classList.remove('opacity-0');
             modal.querySelector('div').classList.remove('scale-95');
             modal.querySelector('div').classList.add('scale-100');
 
-            // Reset Flip
+            // Reset Flip (Ensure back is visible)
             cardDisplay.classList.remove('rotate-y-180');
 
             startShuffling();
 
-            // Reset UI
+            // Reset UI State
             isRevealed = false;
             instructionText.innerText = "Tocá la carta para detener";
             downloadContainer.classList.add('hidden');
@@ -562,7 +558,8 @@ selection:bg-primary/30 overflow-x-hidden">
             setTimeout(() => {
                 modal.classList.add('hidden');
                 stopShuffling();
-                cardDisplay.classList.remove('rotate-y-180'); // Reset flip
+                // Reset flip
+                cardDisplay.classList.remove('rotate-y-180');
             }, 300);
         }
 
@@ -577,7 +574,7 @@ selection:bg-primary/30 overflow-x-hidden">
             let index = 1;
             shuffleInterval = setInterval(() => {
                 index = (index % totalCards) + 1;
-                shufflingImg.src = `dorsos/Carta%20${index}%20-%20Dorso.jpg`;
+                shufflingImg.src = `dorsos/dorso ${index}.png`;
             }, 100);
         }
 
@@ -587,34 +584,40 @@ selection:bg-primary/30 overflow-x-hidden">
         }
 
         // Reveal / Toggle Logic
+        // The click event is on the container
         cardDisplay.addEventListener('click', () => {
             if (isShuffling) {
+                // STOP SHUFFLING & REVEAL
                 stopShuffling();
                 isRevealed = true;
 
                 // 1. Pick Random Card
                 const randomNum = Math.floor(Math.random() * totalCards) + 1;
-                const finalDorso = `dorsos/Carta%20${randomNum}%20-%20Dorso.jpg`;
-                const finalFrente = `frente/Carta%20${randomNum}%20-%20Frente.jpg`;
+                const finalDorso = `dorsos/dorso ${randomNum}.png`;
+                const finalFrente = `frente/carta ${randomNum}.png`;
 
-                // 2. Set Images
+                // 2. Set Images (Hidden side needs to be ready)
                 shufflingImg.src = finalDorso;
                 revealedImg.src = finalFrente;
 
-                // 3. Flip Card (With Delay)
+                // 3. Flip Card (With Delay for suspense)
+                // Use a short timeout so the specific selected dorso is seen for a moment
                 setTimeout(() => {
                     cardDisplay.classList.add('rotate-y-180');
+
                     // 4. Update instruction (After flip starts)
                     instructionText.innerText = "Tocá la carta para girarla";
+
                     // 5. Show downloads
                     downloadContainer.classList.remove('hidden');
-                }, 1200); // 1.2 second delay
+                }, 500);
 
-                // Prepare downloads (Links updated immediately)
+                // Prepare downloads
                 btnDownloadFrente.href = finalFrente;
                 btnDownloadDorso.href = finalDorso;
+
             } else if (isRevealed) {
-                // Toggle Flip
+                // TOGGLE FLIP
                 cardDisplay.classList.toggle('rotate-y-180');
             }
         });
