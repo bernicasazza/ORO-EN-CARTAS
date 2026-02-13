@@ -219,7 +219,7 @@ selection:bg-primary/30 overflow-x-hidden">
     <header class="p-6 flex justify-between items-center relative z-50">
         <div class="flex-1 flex flex-col items-start gap-2 relative">
             <button id="logo-btn" class="focus:outline-none transition-transform active:scale-95">
-                <img alt="Logo" class="h-16 md:h-24 w-auto object-contain cursor-pointer" src="logo%20dorado.png" />
+                <img alt="Logo" class="h-20 md:h-32 w-auto object-contain cursor-pointer" src="logo%20dorado.png" />
             </button>
 
             <!-- Logo Menu (Absolute positioned) -->
@@ -239,14 +239,19 @@ selection:bg-primary/30 overflow-x-hidden">
         </div>
         <div class="text-center shrink-0">
             <div class="flex flex-col items-center">
-                <img alt="Mariposa Dorada" class="h-8 w-auto mb-1 object-contain brightness-75 contrast-125"
+                <img alt="Mariposa Dorada" class="h-12 w-auto mb-1 object-contain brightness-75 contrast-125"
                     src="mariposa%20dorada.png" />
                 <p
                     class="text-xs tracking-[0.2em] uppercase font-light text-stone-500 dark:text-stone-600 whitespace-nowrap">
                     Marina Borensztein</p>
             </div>
         </div>
-        <div class="flex-1 flex justify-end">
+        <div class="flex-1 flex justify-end items-center gap-6">
+            <a href="galeria.html"
+                class="group flex items-center gap-2 text-[#BB8080] hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-2xl">grid_view</span>
+                <span class="font-display text-sm uppercase tracking-widest hidden md:inline">Galería</span>
+            </a>
             <div class="group relative flex flex-col items-end">
                 <span
                     class="mb-2 text-[10px] uppercase tracking-widest text-[#BB8080] font-sans opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
@@ -254,9 +259,9 @@ selection:bg-primary/30 overflow-x-hidden">
                 </span>
                 <a href="biblio.html" class="flex gap-4 hover:scale-105 transition-transform duration-300">
                     <img src="cartas/carta 49 - cecilia .png" alt="Carta Cecilia"
-                        class="w-20 md:w-32 h-auto drop-shadow-md rounded-md transform rotate-[-5deg]">
+                        class="w-20 md:w-32 h-auto drop-shadow-md transform rotate-[-5deg] rounded-2xl">
                     <img src="cartas/carta 49 - marina.png" alt="Carta Marina"
-                        class="w-20 md:w-32 h-auto drop-shadow-md rounded-md transform rotate-[5deg] -ml-8 md:-ml-12">
+                        class="w-20 md:w-32 h-auto drop-shadow-md transform rotate-[5deg] -ml-8 md:-ml-12 rounded-2xl">
                 </a>
             </div>
         </div>
@@ -270,23 +275,25 @@ selection:bg-primary/30 overflow-x-hidden">
         </div>
         <div class="relative w-full flex-1 flex items-center justify-center py-6 md:py-0">
             <div class="fan-container w-full max-w-2xl">
-                <div
-                    class="card-item card-1 w-56 h-80 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/20 overflow-hidden">
+                <div class="card-item card-1 w-56 h-80 bg-stone-100 dark:bg-stone-800 border border-primary/20 overflow-hidden"
+                    style="border-radius: 55px;">
                     <img alt="Dorso Carta 1" class="w-full h-full object-cover opacity-80" src="dorsos/dorso 1.png" />
                     <div class="absolute inset-0 foil-texture pointer-events-none"></div>
-                    <div class="absolute inset-0 border-[0.5px] border-primary/30 rounded-2xl m-2"></div>
+                    <div class="absolute inset-0 border-[0.5px] border-primary/30 m-2" style="border-radius: 45px;">
+                    </div>
                 </div>
-                <div
-                    class="card-item card-2 w-56 h-80 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/20 overflow-hidden">
+                <div class="card-item card-2 w-56 h-80 bg-stone-100 dark:bg-stone-800 border border-primary/20 overflow-hidden"
+                    style="border-radius: 55px;">
                     <img alt="Dorso Carta 2" class="w-full h-full object-cover opacity-80" src="dorsos/dorso 2.png" />
                     <div class="absolute inset-0 foil-texture pointer-events-none"></div>
-                    <div class="absolute inset-0 border-[0.5px] border-primary/30 rounded-2xl m-2"></div>
+                    <div class="absolute inset-0 border-[0.5px] border-primary/30 m-2" style="border-radius: 45px;">
+                    </div>
                 </div>
-                <div
-                    class="card-item card-3 w-56 h-80 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/40 overflow-hidden gold-glow">
+                <div class="card-item card-3 w-56 h-80 bg-stone-100 dark:bg-stone-800 border border-primary/40 overflow-hidden gold-glow"
+                    style="border-radius: 55px;">
                     <img alt="Dorso Carta 3" class="w-full h-full object-cover opacity-90" src="dorsos/dorso 3.png" />
                     <div class="absolute inset-0 foil-texture pointer-events-none"></div>
-                    <div class="absolute inset-0 border-2 border-primary/20 rounded-2xl m-2"></div>
+                    <div class="absolute inset-0 border-2 border-primary/20 m-2" style="border-radius: 45px;"></div>
                     <div class="absolute -top-8 -right-8 w-6 h-6 bg-white animate-twinkle z-50 shadow-[0_0_15px_rgba(255,255,255,0.8)]"
                         style="clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);">
                     </div>
@@ -300,17 +307,19 @@ selection:bg-primary/30 overflow-x-hidden">
                         style="clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);">
                     </div>
                 </div>
-                <div
-                    class="card-item card-4 w-56 h-80 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/20 overflow-hidden">
+                <div class="card-item card-4 w-56 h-80 bg-stone-100 dark:bg-stone-800 border border-primary/20 overflow-hidden"
+                    style="border-radius: 55px;">
                     <img alt="Dorso Carta 4" class="w-full h-full object-cover opacity-80" src="dorsos/dorso 4.png" />
                     <div class="absolute inset-0 foil-texture pointer-events-none"></div>
-                    <div class="absolute inset-0 border-[0.5px] border-primary/30 rounded-2xl m-2"></div>
+                    <div class="absolute inset-0 border-[0.5px] border-primary/30 m-2" style="border-radius: 45px;">
+                    </div>
                 </div>
-                <div
-                    class="card-item card-5 w-56 h-80 bg-stone-100 dark:bg-stone-800 rounded-2xl border border-primary/20 overflow-hidden">
+                <div class="card-item card-5 w-56 h-80 bg-stone-100 dark:bg-stone-800 border border-primary/20 overflow-hidden"
+                    style="border-radius: 55px;">
                     <img alt="Dorso Carta 5" class="w-full h-full object-cover opacity-80" src="dorsos/dorso 5.png" />
                     <div class="absolute inset-0 foil-texture pointer-events-none"></div>
-                    <div class="absolute inset-0 border-[0.5px] border-primary/30 rounded-2xl m-2"></div>
+                    <div class="absolute inset-0 border-[0.5px] border-primary/30 m-2" style="border-radius: 45px;">
+                    </div>
                 </div>
             </div>
         </div>
@@ -480,12 +489,14 @@ selection:bg-primary/30 overflow-x-hidden">
                     <!-- Back of card (Pattern/Dorso) - Initially Visible -->
                     <div class="absolute inset-0 backface-hidden">
                         <img id="shuffling-img" src="dorsos/dorso 1.png" alt="Dorso"
-                            class="w-full h-full object-cover rounded-2xl shadow-lg border border-primary/20">
+                            class="w-full h-full object-cover shadow-lg border border-primary/20"
+                            style="border-radius: 55px;">
                     </div>
                     <!-- Front of card (Message/Frente) - Initially Hidden (Rotated) -->
                     <div class="absolute inset-0 backface-hidden rotate-y-180">
                         <img id="revealed-img" src="" alt="Frente"
-                            class="w-full h-full object-cover rounded-2xl shadow-lg border border-primary/20">
+                            class="w-full h-full object-cover shadow-lg border border-primary/20"
+                            style="border-radius: 55px;">
                     </div>
                 </div>
             </div>
