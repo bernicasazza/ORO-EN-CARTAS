@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Oro en Cartas - Galería</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Montserrat:wght@200;300;400&amp;family=Great+Vibes&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#c2a661", // Gold foil color
+                        "background-light": "#ffffff", // Pure white for light mode
+                        "background-dark": "#EFC9C8", // Custom pink background for dark mode
+                        "accent-soft": "#e8d5cc",
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        sans: ["Montserrat", "sans-serif"],
+                        script: ["Great Vibes", "cursive"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .foil-texture {
+            background: linear-gradient(135deg, rgba(194, 166, 97, 0) 0%, rgba(194, 166, 97, 0.2) 50%, rgba(194, 166, 97, 0) 100%);
+            background-size: 200% 200%;
+            animation: foilMove 4s linear infinite;
+        }
+
+        @keyframes foilMove {
+            0% {
+                background-position: -200% -200%;
+            }
+
+            100% {
+                background-position: 200% 200%;
+            }
+        }
+
+        /* 3D Flip Utilities */
+        .preserve-3d {
+            transform-style: preserve-3d;
+        }
+
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+    </style>
+    <style>
+        body {
+            min-height: 100vh;
+            min-height: 100dvh;
+        }
+
+        /* Custom rounding as requested */
+        .custom-rounded {
+            border-radius: 55px;
+            /* Interpreting 55% request as 55px based on card shape, or could use 12% if responsive. Using px for stability */
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-stone-800 dark:text-stone-900 min-h-screen font-sans selection:bg-primary/30 overflow-x-hidden">
+    <header class="p-6 flex justify-between items-center relative z-50">
+        <div class="flex-1 flex flex-col items-start gap-2 relative">
+            <a href="code.html"
+                class="group flex items-center gap-2 text-[#BB8080] hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-3xl">arrow_back</span>
+                <span class="font-display text-lg hidden md:inline">Volver</span>
+            </a>
+        </div>
+        <div class="text-center shrink-0">
+            <div class="flex flex-col items-center">
+                <img alt="Mariposa Dorada" class="h-12 w-auto mb-1 object-contain brightness-75 contrast-125"
+                    src="mariposa%20dorada.png" />
+                <p
+                    class="text-xs tracking-[0.2em] uppercase font-light text-stone-500 dark:text-stone-600 whitespace-nowrap">
+                    Marina Borensztein</p>
+            </div>
+        </div>
+        <div class="flex-1 flex justify-end">
+            <!-- Placeholder for balance -->
+        </div>
+    </header>
+
+    <main class="flex flex-col items-center min-h-[calc(100dvh-120px)] px-6 pb-12">
+        <div class="text-center mt-6 mb-12">
+            <h1 class="text-4xl md:text-5xl font-display text-[#C2A059] mb-4">Galería de Mensajes</h1>
+            <p class="font-script text-2xl text-primary/80 dark:text-primary">Todas las cartas para vos</p>
+        </div>
+
+        <div id="gallery-grid"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-12 w-full max-w-7xl">
+            <!-- Cards will be injected here -->
+        </div>
+    </main>
+
+    <script>
+        // Check initial theme preference
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        const grid = document.getElementById('gallery-grid');
+        const totalCards = 48;
+
+        for (let i = 1; i <= totalCards; i++) {
+            const cardContainer = document.createElement('div');
+            cardContainer.className = 'flex flex-col items-center gap-4';
+
+            const flipContainer = document.createElement('div');
+            flipContainer.className = 'relative w-64 h-96 group perspective-1000 cursor-pointer'; // Adjusted size
+
+            const cardInner = document.createElement('div');
+            cardInner.className = 'w-full h-full relative preserve-3d transition-transform duration-700 shadow-xl custom-rounded';
+            cardInner.style.borderRadius = '30px'; // Explicit generic fallback, overwritten by class
+
+            // Front (Dorso) - Visible initially
+            const frontFace = document.createElement('div');
+            frontFace.className = 'absolute inset-0 backface-hidden bg-stone-100 dark:bg-stone-800 border border-primary/20 overflow-hidden';
+            frontFace.style.borderRadius = '30px';
+
+            const frontImg = document.createElement('img');
+            frontImg.src = `dorsos/dorso ${i}.png`;
+            frontImg.className = 'w-full h-full object-cover';
+            frontImg.alt = `Dorso ${i}`;
+
+            frontFace.appendChild(frontImg);
+
+            // Back (Mensaje) - Hidden initially (rotated)
+            const backFace = document.createElement('div');
+            backFace.className = 'absolute inset-0 backface-hidden rotate-y-180 bg-stone-100 dark:bg-stone-800 border border-primary/20 overflow-hidden';
+            backFace.style.borderRadius = '30px';
+
+            const backImg = document.createElement('img');
+            backImg.src = `frente/carta ${i}.png`;
+            backImg.className = 'w-full h-full object-cover';
+            backImg.alt = `Carta ${i}`;
+
+            backFace.appendChild(backImg);
+
+            // Assemble Card
+            cardInner.appendChild(frontFace);
+            cardInner.appendChild(backFace);
+            flipContainer.appendChild(cardInner);
+
+            // Interaction
+            flipContainer.addEventListener('click', () => {
+                cardInner.classList.toggle('rotate-y-180');
+                // Toggle visibility of buttons? No, keep them visible below
+            });
+
+            // Action Buttons (Below Card)
+            const actionsDiv = document.createElement('div');
+            actionsDiv.className = 'flex gap-4 opacity-100 transition-opacity duration-300';
+
+            const downloadFront = document.createElement('a');
+            downloadFront.href = `frente/carta ${i}.png`;
+            downloadFront.download = `Mensaje_${i}.png`;
+            downloadFront.className = 'p-2 rounded-full bg-stone-100 dark:bg-stone-800 text-[#BB8080] hover:text-primary hover:bg-stone-200 transition-colors shadow-sm';
+            downloadFront.title = "Descargar Mensaje";
+            downloadFront.innerHTML = '<span class="material-symbols-outlined">download</span><span class="text-xs ml-1">Mensaje</span>';
+            downloadFront.style.display = 'flex';
+            downloadFront.style.alignItems = 'center';
+
+            const downloadBack = document.createElement('a');
+            downloadBack.href = `dorsos/dorso ${i}.png`;
+            downloadBack.download = `Dorso_${i}.png`;
+            downloadBack.className = 'p-2 rounded-full bg-stone-100 dark:bg-stone-800 text-[#BB8080] hover:text-primary hover:bg-stone-200 transition-colors shadow-sm';
+            downloadBack.title = "Descargar Dorso";
+            downloadBack.innerHTML = '<span class="material-symbols-outlined">download</span><span class="text-xs ml-1">Dorso</span>';
+            downloadBack.style.display = 'flex';
+            downloadBack.style.alignItems = 'center';
+
+            actionsDiv.appendChild(downloadFront);
+            actionsDiv.appendChild(downloadBack);
+
+            cardContainer.appendChild(flipContainer);
+            cardContainer.appendChild(actionsDiv);
+            grid.appendChild(cardContainer);
+        }
+    </script>
+</body>
+
+</html>
